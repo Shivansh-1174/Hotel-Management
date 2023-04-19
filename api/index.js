@@ -7,6 +7,13 @@ const cors = require('cors');
 
 const app = express();
 
+
+const path = require('path');
+app.use(express.static('build'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/build/index.html'))
+});
+
 // parse incoming requests
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
