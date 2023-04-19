@@ -7,7 +7,7 @@ const CenteredContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background:url("https://pixabay.com/get/g3d8017b5f3d84803caaa410168a907f9cec4810e3bbd1d2b0c1ce742c72dffc58d63c4c667f1f0f19984b9ebf17792da.jpg");
+  background:url("https://pixabay.com/get/g021c94f520a0f7aba7e8ddf320a91bf6be642b26cf243ab8594f3d6ed026257ef060261b73c256720e1d6909681a81ab.jpg");
   background-size:cover;
   justify-content: center;
   height: 89.3vh;
@@ -72,10 +72,7 @@ export default function Admin() {
   return (
     <>
       <CenteredContainer>
-        {/* <ImageContain>
-          <Image src="https://www.peninsula.com/en/-/media/images/the-peninsula-hotels/destination/phk_exterior_1280.jpg?mw=867&hash=B2EF433FD9257445C0C15BDC296F4CF9">
-          </Image>
-        </ImageContain> */}
+
         <MainCenter>
           <AdminText>HELLO <br />ADMIN !</AdminText>
           <ButtonContainer>

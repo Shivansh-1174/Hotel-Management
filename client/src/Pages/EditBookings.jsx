@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 
 const Main = styled.div`
-background:url("https://pixabay.com/get/g70009b046505e7b0b50ef847bfb6601918a4f1725772f3108dcb89eca5d24dd14ada0b81e8ad2d91b84d8991f5ab0b0d.jpg");
+background:url("https://pixabay.com/get/g021c94f520a0f7aba7e8ddf320a91bf6be642b26cf243ab8594f3d6ed026257ef060261b73c256720e1d6909681a81ab.jpg");
   background-size:cover;
   height:100vh;
   overflow:hidden;

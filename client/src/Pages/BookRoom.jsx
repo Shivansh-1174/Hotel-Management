@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState, useRef } from 'react'
 
 const Main = styled.div`
-background:url("https://pixabay.com/get/g78189aaab4d98604d4061b2e14bab871f6b3c5d926e62f96331791bd0a6c72690404f35c97b36e890ba5bcef0e6b04b8.jpg");
+background:url("https://pixabay.com/get/g021c94f520a0f7aba7e8ddf320a91bf6be642b26cf243ab8594f3d6ed026257ef060261b73c256720e1d6909681a81ab.jpg");
   background-size:cover;
   height:100vh;
   overflow:hidden;
@@ -130,7 +130,7 @@ export default function BookRoom() {
 
   async function find(ev) {
     ev.preventDefault();
-    alert("hello");
+
 
     if (checkIn < checkOut) {
       const selectValue = select.current.value
