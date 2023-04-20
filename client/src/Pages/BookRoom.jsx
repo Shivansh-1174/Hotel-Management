@@ -132,6 +132,7 @@ export default function BookRoom() {
     ev.preventDefault();
 
 
+
     if (checkIn < checkOut) {
       const selectValue = select.current.value
       const response = await fetch('http://localhost:4000/checker', {

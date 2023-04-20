@@ -7,17 +7,18 @@ const cors = require('cors');
 
 const app = express();
 
+app.use(cors({
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}));
 
-const path = require('path');
-app.use(express.static('build'));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/build/index.html'))
-});
 
 // parse incoming requests
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+
+
 
 // connect to the database
 mongoose.connect('mongodb+srv://shivanshsuman:Cricketlover17@cluster0.q4jicj5.mongodb.net/?retryWrites=true&w=majority').then(() => {
@@ -61,14 +62,17 @@ app.post('/booking', async (req, res) => {
 
 
 app.get('/viewList', async (req, res) => {
-  try {
-    const bookings = await Rooms.find({});
-    res.json(bookings);
-  } catch (err) {
+  Rooms.find({}).then(bookings => {
+    console.log(bookings);
+    res.json({ data: bookings })
+  }).catch(err => {
     console.error(err);
     res.status(500).send('Server Error');
-  }
+  })
+
 });
+
+
 
 app.post('/checker', async (req, res) => {
   try {

@@ -103,14 +103,18 @@ const ViewList = () => {
   const [bookings, setBookings] = useState([]);
   const Navigate = useNavigate();
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, []);
 
   const fetchData = () => {
-    fetch('http://localhost:4000/viewList')
-      .then(res => res.json())
+    fetch('http://localhost:4000/viewList').then(res => {
+      console.log(res);
+      return res.json()
+
+    })
       .then(data => {
-        setBookings(data);
+        console.log(data);
+        setBookings(data.data);
       })
       .catch(err => {
         console.log(err);
