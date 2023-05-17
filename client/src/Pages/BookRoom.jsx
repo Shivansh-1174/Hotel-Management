@@ -1,22 +1,21 @@
 import styled from 'styled-components'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useRef } from 'react'
 
+
 const Main = styled.div`
-background:url("https://pixabay.com/get/g021c94f520a0f7aba7e8ddf320a91bf6be642b26cf243ab8594f3d6ed026257ef060261b73c256720e1d6909681a81ab.jpg");
+  background:url("https://rare-gallery.com/uploads/posts/535025-accommodation.jpg");
   background-size:cover;
   height:100vh;
   overflow:hidden;
 
 `
 const TopContainer = styled.div`
-    height : 50px;
-    background-color : black;
-
-    display:flex;
-   align-items : center;
-   justify-content : center;
-
+  height : 50px;
+  background-color : #E6D5A9;
+  display:flex;
+  align-items : center;
+  justify-content : center;
 
 `;
 const Glass = styled.div`
@@ -35,23 +34,23 @@ const Glass = styled.div`
     overflow: hidden;
 `
 const Text = styled.h1`
-flex : 1;
-height : 100%;
-margin: 0px 10px;
-   display:flex;
-   color:white;
-   align-items : center;
-   justify-content : center;
+  flex : 1;
+  height : 100%;
+  margin: 0px 10px;
+  display:flex;
+  color:#2A2F33;
+  align-items : center;
+  justify-content : center;
 
 `;
 const A = styled.h3`
-flex : 1;
-height : 100%;
-margin: 0px 20px;
-   display:flex;
-   color:white;
-   align-items : left;
-   justify-content : center;
+  flex : 1;
+  height : 100%;
+  margin: 0px 20px;
+  display:flex;
+  color: #2A2F33;
+  align-items : left;
+  justify-content : center;
 `;
 const Container = styled.div`
   display: flex;
@@ -65,7 +64,8 @@ const Form = styled.form`
   flex-direction: column;
   margin-top:-100px;
   label {
-    margin-top: 10px;
+    margin: 10px 5px;
+    font-weight: bold;
   }
 
   input[type="email"],
@@ -81,8 +81,10 @@ const Form = styled.form`
 
   input[type="submit"] {
     padding: 10px 20px;
-    background-color: #00593F;
-    color: white;
+    background-color: #5F4E35;
+    color: #E6D5A9;
+    font-size: 16px;
+    font-weight: bold;
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -102,14 +104,11 @@ const Form = styled.form`
 export default function BookRoom() {
 
   const [email, setEmail] = useState('');
-  const select = useRef();
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');
-  // const [price, setPrice] = useState('');
+
+  const select = useRef();
   let price = 0;
-
-  const Navigate = useNavigate();
-
 
   const typeArray = [{
     type: 'A',
@@ -131,26 +130,23 @@ export default function BookRoom() {
   async function find(ev) {
     ev.preventDefault();
 
-
-
     if (checkIn < checkOut) {
-      const selectValue = select.current.value
+      const selectValue = select.current.value  //Stores current Room Type
       const response = await fetch('http://localhost:4000/checker', {
         method: 'POST',
         body: JSON.stringify({ email, selectValue, checkIn, checkOut, price }),
         headers: { 'Content-Type': 'application/json' },
       });
-      response.json().then(res => {
+      console.log(response);
+      response.json().then(res => {   //Filters data of the same room type as given in the current form .
         const firstdata = res.filter(e => e.type === selectValue)
         return firstdata;
-
       }).then(third => {
-        const thirdData = third.filter(e => checkIn < e.checkOut && checkOut > e.checkIn)
+        const thirdData = third.filter(e => checkIn < e.checkOut && checkOut > e.checkIn)    //WE ARE CHECKING FOR CLASHES
         const t = typeArray.filter(e => e.type === selectValue)
-
         if (thirdData.length < t[0].availRooms) {
-          // setPrice(t[0].price);
           price = t[0].price;
+
           booking();
         }
         else {
@@ -163,11 +159,8 @@ export default function BookRoom() {
     }
   }
 
-
-
   async function booking() {
-    // ev.preventDefault();
-    const selectValue = select.current.value
+    const selectValue = select.current.value  //Stores room type
     const response = await fetch('http://localhost:4000/booking', {
       method: 'POST',
       body: JSON.stringify({ email, selectValue, checkIn, checkOut, price }),
@@ -180,7 +173,6 @@ export default function BookRoom() {
     setCheckOut('');
     select.current.value = "Select an Option";
   }
-
 
   return (
     <>
@@ -196,28 +188,20 @@ export default function BookRoom() {
         <Glass>
           <Container>
             <Form className='book' onSubmit={find}>
+
               <label HTMLfor="email">Email:</label>
               <input type="email" placeholder="Enter Your Email" id="email" name="email" value={email}
                 onChange={ev => setEmail(ev.target.value)}
                 required /><br />
 
               <label for="room-type">Room Type:</label>
-              {/* <input type="text" id="room-type" name="room_type" placeholder="Enter Room Type"
-            onChange={ev => setType(ev.target.value)}
-            required /><br /> */}
-              <select id="room-type" name="room_type" ref={select}>
+              <select id="room-type" name="room_type" ref={select}
+              >
                 {<option disabled selected>Select an Option</option>}
                 <option >A</option>
-
-
                 <option >B</option>
-
-
                 <option >C</option>
               </select><br />
-
-
-
 
               <label for="start-time">Check-in Time:</label>
               <input type="datetime-local" id="start-time" name="start_time" placeholder='Check-in Time' required value={checkIn}
@@ -228,12 +212,6 @@ export default function BookRoom() {
               <input type="datetime-local" id="end-time" name="end_time" placeholder='Check-out Time' required value={checkOut}
                 onChange={ev => setCheckOut(ev.target.value)} />
               <br />
-
-
-
-
-
-
 
               <input type="submit" value="Confirm" />
             </Form>

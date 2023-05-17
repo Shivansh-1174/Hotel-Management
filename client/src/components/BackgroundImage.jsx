@@ -17,9 +17,6 @@ height:90vh;
 
 
 
-
-
-
 `;
 
 export default function BackgroundImage() {

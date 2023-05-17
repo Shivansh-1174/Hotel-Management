@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 
 const Main = styled.div`
-background:url("https://pixabay.com/get/g021c94f520a0f7aba7e8ddf320a91bf6be642b26cf243ab8594f3d6ed026257ef060261b73c256720e1d6909681a81ab.jpg");
+background:url("https://rare-gallery.com/uploads/posts/535025-accommodation.jpg");
   background-size:cover;
   height:100vh;
   overflow:hidden;
@@ -12,7 +12,7 @@ background:url("https://pixabay.com/get/g021c94f520a0f7aba7e8ddf320a91bf6be642b2
 `
 const TopContainer = styled.div`
     height : 50px;
-    background-color : black;
+    background-color : #E6D5A9;
 
     display:flex;
    align-items : left-center;
@@ -36,20 +36,20 @@ const Glass = styled.div`
     overflow: hidden;
 `
 const Text = styled.h1`
-flex : 1;
-height : 100%;
-margin: 0px 10px;
-   display:flex;
-   color:white;
-   align-items : center;
-   justify-content : center;
+  flex : 1;
+  height : 100%;
+  margin: 0px 10px;
+  display:flex;
+  color: #2A2F33;
+  align-items : center;
+  justify-content : center;
 `;
 const A = styled.h3`
 flex : 1;
 height : 100%;
 margin: 0px 10px;
    display:flex;
-   color:white;
+   color: #2A2F33;
    align-items : center;
    justify-content : center;
 `;
@@ -65,7 +65,8 @@ const Form = styled.form`
   flex-direction: column;
   margin-top:-100px;
   label {
-    margin-top: 10px;
+    margin: 10px 5px;
+    font-weight: bold;
   }
 
   input[type="email"],
@@ -81,8 +82,8 @@ const Form = styled.form`
 
   input[type="submit"] {
     padding: 10px 20px;
-    background-color: #00593F;
-    color: white;
+    background-color: #5F4E35;
+    color: #E6D5A9;
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -98,9 +99,6 @@ export default function EditBookings() {
   const [checkOut, setCheckOut] = useState('');
   const [price, setPrice] = useState('');
 
-  // const typeA = 2;
-  // const typeB = 3;
-  // const typeC = 5;
   const { id } = useParams();
 
   const Navigate = useNavigate();
@@ -161,18 +159,14 @@ export default function EditBookings() {
     })
   }
 
-
-
   async function editBooking() {
-    // ev.preventDefault();
     const response = await fetch('http://localhost:4000/edit/' + id, {
       method: 'POST',
       body: JSON.stringify({ email, type, checkIn, checkOut, price }),
       headers: { 'Content-Type': 'application/json' },
     });
-    alert("Successfully Update")
+    alert("Successfully Updated!!")
     Navigate('/viewList')
-
   }
 
 
@@ -180,9 +174,9 @@ export default function EditBookings() {
     <>
       <Main>
         <TopContainer>
+          <Link to="/" style={{ textDecoration: "none" }}><A>HOME</A></Link>
           <Text>BOOK A ROOM HERE</Text>
-          <Link to="/"><A>HOME</A></Link>
-          <Link to="/viewList"><A>VIEW LIST</A></Link>
+          <Link to="/viewList" style={{ textDecoration: "none" }}><A>VIEW LIST</A></Link>
 
 
         </TopContainer>
@@ -208,13 +202,6 @@ export default function EditBookings() {
               <input type="datetime-local" id="end-time" name="end_time" placeholder='Check-out Time' required value={checkOut}
                 onChange={ev => setCheckOut(ev.target.value)} />
               <br />
-
-
-
-
-
-
-
               <input type="submit" value="Confirm" />
             </Form>
 

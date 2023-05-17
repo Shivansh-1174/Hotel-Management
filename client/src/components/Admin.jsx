@@ -1,16 +1,15 @@
 import styled from "styled-components";
-import BookRoom from "../Pages/BookRoom";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CenteredContainer = styled.div`
   top:80px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background:url("https://pixabay.com/get/g021c94f520a0f7aba7e8ddf320a91bf6be642b26cf243ab8594f3d6ed026257ef060261b73c256720e1d6909681a81ab.jpg");
-  background-size:cover;
+  background:url("https://rare-gallery.com/uploads/posts/535025-accommodation.jpg");
+  background-size: cover;
   justify-content: center;
-  height: 89.3vh;
+  height: 91.5vh;
 `;
 const MainCenter = styled.div`
     position: relative;
@@ -28,24 +27,12 @@ const MainCenter = styled.div`
     backdrop-filter: blur(5px);
     overflow: hidden;
 `
-const ImageContain = styled.div`
-position : absolute;
-`;
-
-const Image = styled.img`
-  opacity : 0.5;
-  object-fit: cover;
-  overflow: hidden;
-  height : 100%;
-  width :100%;
-
-`;
 
 const AdminText = styled.h1`
-  font-size: 32px;
-  color: #fff;
+  font-size: 38px;
+  color: black;
   text-align: center;
-  margin-top:120px;
+  margin-top: 100px;
   position : relative;
 `;
 
@@ -56,8 +43,9 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: #00593F;
-  color: white;
+  background-color: #5F4E35;
+  color: #E6D5A9;
+  font-size : 18px;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
@@ -74,7 +62,7 @@ export default function Admin() {
       <CenteredContainer>
 
         <MainCenter>
-          <AdminText>HELLO <br />ADMIN !</AdminText>
+          <AdminText>WELCOME <br />ADMIN !</AdminText>
           <ButtonContainer>
 
             <Link to="/booking" style={{ textDecoration: "none", color: "black" }}><Button>Book a Room</Button></Link>
